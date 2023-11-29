@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <title>Document</title>
+</head>
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center">LISTADO DE RESERVAS</div>
+
+    {% if reserva %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th># ID</th>
+                <th>Responsable</th>
+                <th>Teléfono</th>
+                <th>Fecha Reserva</th>
+                <th>Hora Reserva</th>
+                <th>Cantidad de Personas</th>
+                <th>Email</th>
+                <th>Estado</th>
+                <th>Observación</th>
+            </tr>
+        </thead>
+
+        <div class="container text-center">
+            <div class="row align-items-start">
+              <div class="col">
+                One of three columns
+              </div>
+              <div class="col">
+                One of three columns
+              </div>
+              <div class="col">
+                One of three columns
+              </div>
+            </div>
+          </div>
+
+        <tbody>
+            {% for reserva in reserva %}
+            <tr>
+                <td>{{reserva.id}}</td>
+                <td>{{reserva.responsable}}</td>
+                <td>{{reserva.telefono}}</td>
+                <td>{{reserva.fechaReserva}}</td>
+                <td>{{reserva.horaReserva}}</td>
+                <td>{{reserva.cantidadPersonas}}</td>
+                <td>{{reserva.email}}</td> 
+                <td>{{reserva.estado}}</td> 
+                <td>{{reserva.observacion}}</td>   
+                <td><a class="btn btn-success btn-sm" href="/actualizar/{{reserva.id}}"><i class="bi bi-pencil-square"></i></a></td>       
+                <td><a class="btn btn-danger btn-sm" href="/eliminar/{{reserva.id}}"><i class="bi bi-trash"></i></a></td>         
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+        <div class="alert alert-danger text-center">
+            No se encuentran reservas en el sistema
+        </div>
+    {% endif %}
+
+    <a href="/" class="btn btn-danger">VOLVER</a>
+    <a href="/agregar" class="btn btn-success float-end">AGREGAR RESERVA</a>
+    
+</body>
+</html>
